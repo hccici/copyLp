@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    </head>
+    <style>
+        .label{
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+        }
+    </style>
+    <body>
+        <form id="myForm">
+            <div class="label">url:</div><input type="text" name="url" /><br />
+            <div class="label">cta:</div><input type="text" name="cta" /><br />
+            <div class="label">assetpath:</div><input type="text" name="assetpath" /><br />
+            <input type="submit" value="提交" />
+        </form>
+        <script>
+            $("#myForm").bind("submit", function (e) {
+                e.preventDefault();
+                var params = {}
+                $(this).serializeArray().forEach(function(item){
+                    params[item.name] = item.value;
+                })
+                $.post('http://localhost:3000',params,function(data){
+                    alert(data.message)
+                },'json')
+            });
+        </script>
+    </body>
+</html>

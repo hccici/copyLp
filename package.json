@@ -1,0 +1,31 @@
+{
+    "name": "copy",
+    "version": "1.0.0",
+    "description": "copyLP",
+    "main": "app/index.js",
+    "scripts": {
+        "app:product": "node app/index.js",
+        "app:dev": "nodemon app/index.js",
+        "static": "hs output"
+    },
+    "keywords": [
+        "copy"
+    ],
+    "author": "华泓钧",
+    "license": "MIT",
+    "dependencies": {
+        "cheerio": "^1.0.0-rc.5",
+        "http-server": "^0.12.3",
+        "https": "^1.0.0",
+        "koa-body": "^4.2.0",
+        "koa-router": "^10.0.0",
+        "koa2": "^2.0.0-alpha.7",
+        "koa2-cors": "^2.0.6",
+        "puppeteer": "^8.0.0"
+    },
+    "devDependencies": {
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.16.0",
+        "nodemon": "^2.0.7"
+    }
+}
