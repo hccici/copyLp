@@ -204,7 +204,7 @@ module.exports = {
 
         // 限制单行代码的长度
         // @off 不限制
-        'max-len': 0,
+        'max-len': [2, 120],
 
         // 限制单个文件最大行数
         // @off 不限制
@@ -599,7 +599,7 @@ module.exports = {
 
         // 禁止行尾空格
         'no-trailing-spaces': [2, {
-            'skipBlankLines': true, // 不检查空行
+            'skipBlankLines': false, // 不检查空行
             'ignoreComments': true // 不检查注释
         }],
 
@@ -830,7 +830,7 @@ module.exports = {
 
         // function 的圆括号之前是否使用空格
         // @off 不关心
-        'space-before-function-paren': 0,
+        'space-before-function-paren': 2,
 
         // 圆括号内的空格使用规则
         // @off 不关心

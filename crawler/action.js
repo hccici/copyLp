@@ -13,7 +13,7 @@ class Action {
         html: '',
         link: []
     }; // 解析到的资源
-    static delDir(pa) {
+    static delDir (pa) {
         let files = [];
         if (fs.existsSync(pa)) {
             files = fs.readdirSync(pa);
@@ -29,30 +29,34 @@ class Action {
         }
     }
     // 获取资源下载路径
-    static getUrl(url1) {
+    static getUrl (url1) {
         let mUrl = '';
         if (url1.startsWith('http')) {
             mUrl = url1;
+        } else if (url1.startsWith('//')) {
+            mUrl = this.urlParser.protocol + url1;
         } else {
             // 判断是否是跟路径，还是相对路径
             if (url1.startsWith('/')) {
                 mUrl = `${this.urlParser.protocol}//${this.urlParser.hostname}${url1}`;
             } else {
                 // !
-                let pathname = this.urlParser.pathname.endsWith('/') ? this.urlParser.pathname + 'a' : this.urlParser.pathname;
-                mUrl = this.urlParser.protocol + '/' + path.resolve(`/${this.urlParser.hostname}/${pathname}`, `../${url1}`);
+                let pathname =
+                this.urlParser.pathname.endsWith('/') ? this.urlParser.pathname + 'a' : this.urlParser.pathname;
+                mUrl =
+                this.urlParser.protocol + '/' + path.resolve(`/${this.urlParser.hostname}/${pathname}`, `../${url1}`);
             }
         }
         return mUrl;
     }
     // 获取本地写入的[安装名称,资源路径]
-    static getSP(pa) {
+    static getSP (pa) {
         let name = pa.split('/').pop().split('?')[0];
         name = name.split('#')[0];
         const sp = this.assetpath ? `${this.assetpath}/${this.dirN}/${name}` : name;
         return [name, sp];
     }
-    static downloadSource(url1) {
+    static downloadSource (url1) {
         const sp = Action.getSP.call(this, url1);
         let imgUrl = Action.getUrl.call(this, url1);
         https.get(imgUrl, (res) => {
@@ -72,29 +76,29 @@ class Action {
                     }
                 });
             });
-            
+
         }).on('error', (err) => {
             console.error(`出现错误: ${err.message}`);
         });
     }
-    static isTraceImg($img) {
+    static isTraceImg ($img) {
         if ($img.attr('width') < 10) {
             $img.remove();
             return true;
         }
         return false;
     }
-    constructor(html, urlString, assetpath) {
+    constructor (html, urlString, assetpath) {
         this.$ = cheerio.load(html);
         this.urlParser = url.parse(urlString);
         this.assetpath = assetpath || '';
     }
-    
-    deleteScript() {
+
+    deleteScript () {
         this.$('script').remove();
     }
 
-    createDir() {
+    createDir () {
         const name = this.urlParser.pathname.split('/');
         if (name.length !== 0) {
             const t = name.pop();
@@ -108,7 +112,7 @@ class Action {
         fs.mkdirSync(this.dirP);
     }
 
-    creatHtml(noInstall) {
+    creatHtml (noInstall) {
         this.source.html = this.$.html();
         if (noInstall) {
             return;
@@ -122,7 +126,7 @@ class Action {
         });
     }
 
-    installCss(noInstall) {
+    installCss (noInstall) {
         const s = [];
         const doit = (i, e) => {
             const $this = this.$(e);
@@ -195,7 +199,7 @@ class Action {
         return Promise.all(s);
     }
 
-    installImg(noInstall) {
+    installImg (noInstall) {
         // 分两种类型的图片，一个是绝对路径，一个是相对路径的
         // 利用set去重
         const ap = new Set();
@@ -246,7 +250,7 @@ class Action {
         });
     }
 
-    setCTA(setUrl) {
+    setCTA (setUrl) {
         const map = {};
         this.$('a').each((i, e) => {
             const href = this.$(e).attr('href');
