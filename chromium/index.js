@@ -10,9 +10,9 @@ let wsString = {};
         }
     });
     const ws = browser.wsEndpoint();
-    console.log('chromium启动成功：',ws);
+    console.log('chromium启动成功：', ws);
     return ws;
-})().then(function(ws){
+})().then(function(ws) {
     wsString.url = ws;
 });
 module.exports = wsString;
