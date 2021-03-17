@@ -1,4 +1,5 @@
 output/* 
 !input.html
+!input2.html
 
 node_modules/

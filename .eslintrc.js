@@ -45,7 +45,7 @@ module.exports = {
 
         // 箭头函数的空格使用规则
         // @off 不限制
-        'arrow-spacing': 0,
+        'arrow-spacing': 2,
 
         // 不能在块外使用块作用域内 var 定义的变量
         'block-scoped-var': 2,
@@ -80,7 +80,7 @@ module.exports = {
 
         // 逗号前后是否有空格
         // @off 不关心
-        'comma-spacing': 0,
+        'comma-spacing': 2,
 
         // 逗号写在行首还是行尾
         // @off 不关心
@@ -826,7 +826,7 @@ module.exports = {
 
         // function 等的花括号之前是否使用空格
         // @off 不关心
-        'space-before-blocks': 0,
+        'space-before-blocks': 2,
 
         // function 的圆括号之前是否使用空格
         // @off 不关心
@@ -834,7 +834,7 @@ module.exports = {
 
         // 圆括号内的空格使用规则
         // @off 不关心
-        'space-in-parens': 0,
+        'space-in-parens': 2,
 
         // 操作符前后要加空格
         'space-infix-ops': 2,
